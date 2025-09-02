@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SuriWorks — Surveillance & Reporting</title>
+  <meta name="description" content="SuriWorks surveillance and reporting solutions for real-time monitoring, employee management, theft detection, and business insights." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./Fevicon.png" />
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+
+  <style>
+    body {
+      font-family: Inter, system-ui;
+      background: #0b1020;
+      color: #e9ecf5;
+    }
+    .plan-features {
+  list-style: disc;   /* show bullets */
+  padding-left: 1.5rem; /* indent bullets */
+  margin: 1rem 0;
+}
+.plan-features li {
+  margin-bottom: .5rem;
+  color: #fff;
+}
+.plan-card {
+  background: #fff;
+  color: #fff;
+  border-radius: .5rem;
+}
+    .hero {
+      padding: 6rem 0;
+      text-align: center;
+      background: radial-gradient(circle at 20% 30%, rgba(110,231,248,.1), transparent 70%),
+                  radial-gradient(circle at 80% 50%, rgba(155,140,255,.1), transparent 70%),
+                  #0b1020;
+    }
+    .headline { font-weight: 800; }
+    .glass-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    footer { border-top:1px solid rgba(255,255,255,.08); padding:2rem 0; margin-top:3rem; }
+    .plan-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+    }
+    .plan-card h4 { font-weight: 700; }
+    .plan-card ul { text-align: left; }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top bg-dark bg-opacity-75">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-light" href="home.html"><i class="bi bi-shield-lock me-2"></i>Suri<span class="text-info">Works</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link text-light" href="index.html#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-light" href="index.html#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link text-light" href="index.html#work">Work</a></li>
+          <li class="nav-item"><a class="nav-link text-light" href="index.html#process">Process</a></li>
+          <li class="nav-item"><a class="nav-link active text-light" href="surveillance.html">Surveillance</a></li>
+          <li class="nav-item"><a class="nav-link text-light" href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="display-4 headline mb-3">Surveillance & Reporting</h1>
+      <p class="lead text-light opacity-75">24/7 real-time monitoring, theft detection, reporting, and employee management — tailored for your business growth.</p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="glass-card h-100">
+          <i class="bi bi-camera-video icon-xl mb-3"></i>
+          <h4 class="fw-bold">Real-Time Monitoring</h4>
+          <p class="opacity-75">Your sites are monitored 24/7 by our e-surveillance professionals. Alerts are raised instantly for suspicious or criminal activity.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="glass-card h-100">
+          <i class="bi bi-columns icon-xl mb-3"></i>
+          <h4 class="fw-bold">Multiple Site View</h4>
+          <p class="opacity-75">Monitor multiple locations from one centralized control room, giving you peace of mind no matter where your business operates.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="glass-card h-100">
+          <i class="bi bi-graph-up-arrow icon-xl mb-3"></i>
+          <h4 class="fw-bold">Business Insights & Reports</h4>
+          <p class="opacity-75">Access daily, weekly, and monthly reports that provide actionable insights to boost productivity and reduce inefficiencies.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="glass-card h-100">
+          <i class="bi bi-people icon-xl mb-3"></i>
+          <h4 class="fw-bold">Employee & Customer Management</h4>
+          <p class="opacity-75">We help streamline workflows, enhance communication, and foster stronger interactions with both employees and customers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- PRICING -->
+<section class="container py-6">
+  <div class="row text-center mb-5">
+    <h2 class="display-6 fw-bold">Our Plans</h2>
+    <p class="muted">Choose a plan that fits your business needs.</p>
+  </div>
+  <div class="row g-4">
+    <!-- BASIC -->
+    <div class="col-md-4">
+      <div class="plan-card h-100 p-4 shadow-sm">
+        <h4 class="fw-bold">Basic Plan</h4>
+        <p class="fw-bold text-info">$25 / Day</p>
+        <ul class="plan-features">
+          <li>Minute-by-Minute Surveillance</li>
+          <li>Summary & Inventory Cross Checks</li>
+          <li>Daily, Weekly & Monthly Reports</li>
+          <li>Employee & Clients Management</li>
+          <li>Theft & Other Activity Detection</li>
+          <li>Summary for What’s Missing</li>
+          <li>Fulfill Rules and Regulations</li>
+          <li>In Person Security</li>
+          <li>Store Add-on $399</li>
+          <li>Free Wyze Camera</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+
+    <!-- STANDARD -->
+    <div class="col-md-4">
+      <div class="plan-card h-100 p-4 shadow-sm">
+        <h4 class="fw-bold">Standard Plan</h4>
+        <p class="fw-bold text-info">$685 / Month</p>
+        <ul class="plan-features">
+          <li>Minute-by-Minute Surveillance</li>
+          <li>Summary & Inventory Cross Checks</li>
+          <li>Daily, Weekly & Monthly Reports</li>
+          <li>Employee & Clients Management</li>
+          <li>Theft & Other Activity Detection</li>
+          <li>Summary for What’s Missing</li>
+          <li>Fulfill Rules and Regulations</li>
+          <li>In Person Security</li>
+          <li>Store Add-on $399</li>
+          <li>Free Wyze Camera</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+
+    <!-- 6 MONTHS -->
+    <div class="col-md-4">
+      <div class="plan-card h-100 p-4 shadow-sm">
+        <h4 class="fw-bold">Standard (6 Months)</h4>
+        <p class="fw-bold text-info"><del>$4500</del> $3500 / 6 Months</p>
+        <ul class="plan-features">
+          <li>Minute-by-Minute Surveillance</li>
+          <li>Summary & Inventory Cross Checks</li>
+          <li>Daily, Weekly & Monthly Reports</li>
+          <li>Employee & Clients Management</li>
+          <li>Theft & Other Activity Detection</li>
+          <li>Summary for What’s Missing</li>
+          <li>Fulfill Rules and Regulations</li>
+          <li>In Person Security</li>
+          <li>Store Add-on $399</li>
+          <li>Free Wyze Camera</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- NEWSLETTER + FOOTER -->
+<footer class="bg-dark text-light pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Newsletter -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <h6 class="fw-bold">JOIN OUR NEWSLETTER</h6>
+        <form class="d-flex mt-2">
+          <input type="email" class="form-control me-2" placeholder="Enter your e-mail address" required />
+          <button class="btn btn-info fw-bold text-dark">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Social Icons -->
+      <div class="col-md-6 text-md-end">
+        <h6 class="fw-bold">KEEP UPDATED</h6>
+        <div class="d-flex justify-content-md-end justify-content-center gap-3 mt-2">
+          <a href="#" class="text-light"><i class="bi bi-twitter fs-5"></i></a>
+          <a href="#" class="text-light"><i class="bi bi-facebook fs-5"></i></a>
+          <a href="#" class="text-light"><i class="bi bi-google fs-5"></i></a>
+          <a href="#" class="text-light"><i class="bi bi-instagram fs-5"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4 small">
+      <p>Copyright © <span id="year"></span> SuriWorks — All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
