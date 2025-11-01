@@ -124,13 +124,13 @@
   </div>
 
   <script>
-    // Switch forms
+    // Switch between forms
     function showForm(id) {
       document.querySelectorAll('.fade').forEach(f => f.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
-    // Basic storage helpers
+    // Helpers
     function getUsers() {
       return JSON.parse(localStorage.getItem('suri_users') || '{}');
     }
@@ -141,19 +141,18 @@
       try { return btoa(unescape(encodeURIComponent(str))).slice(0,40); } catch { return str; }
     }
 
-    // Auto redirect if already logged in
-   const stored = localStorage.getItem('suri_loggedIn');
-try {
-  const user = stored ? JSON.parse(stored) : null;
-  if (user && user.email) {
-    window.location.href = 'home.html';
-  }
-} catch(e) {
-  localStorage.removeItem('suri_loggedIn');
-}
+    // ✅ Only redirect if a *real* logged-in user exists
+    const stored = localStorage.getItem('suri_loggedIn');
+    try {
+      const user = stored ? JSON.parse(stored) : null;
+      if (user && user.email) {
+        window.location.href = 'home.html';
+      }
+    } catch (e) {
+      localStorage.removeItem('suri_loggedIn');
+    }
 
-
-    // Login
+    // ✅ Login
     document.getElementById('loginBtn').addEventListener('click', () => {
       const email = loginEmail.value.trim().toLowerCase();
       const pass = loginPassword.value.trim();
@@ -164,35 +163,40 @@ try {
       if (!email || !pass) return err.textContent = 'Enter email and password';
       if (!users[email]) return err.textContent = 'Account not found';
       if (users[email].password !== hash(pass)) return err.textContent = 'Incorrect password';
-      
+
       localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
       window.location.href = 'home.html';
     });
 
-    // Register
+    // ✅ Register
     document.getElementById('registerBtn').addEventListener('click', () => {
       const name = regName.value.trim();
       const email = regEmail.value.trim().toLowerCase();
       const pass = regPassword.value.trim();
       const err = document.getElementById('regError');
       err.textContent = '';
+
       if (!name || !email || !pass) return err.textContent = 'All fields required';
       if (pass.length < 6) return err.textContent = 'Password too short';
+
       const users = getUsers();
       if (users[email]) return err.textContent = 'Email already registered';
+
       users[email] = { name, email, password: hash(pass) };
       saveUsers(users);
       localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
-         window.location.href = 'home.html';
+      window.location.href = 'home.html';
     });
 
-    // Forgot password
+    // ✅ Forgot password
     document.getElementById('forgotBtn').addEventListener('click', () => {
       const email = forgotEmail.value.trim().toLowerCase();
       const msg = document.getElementById('forgotMsg');
       const users = getUsers();
+
       if (!email) return msg.textContent = 'Enter your registered email';
       if (!users[email]) return msg.textContent = 'Email not found';
+
       users[email].password = hash('123456'); // reset to default
       saveUsers(users);
       msg.textContent = 'Password reset to: 123456';
@@ -200,4 +204,3 @@ try {
   </script>
 </body>
 </html>
-
