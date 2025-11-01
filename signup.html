@@ -14,7 +14,7 @@
         <div class="card shadow">
           <div class="card-body">
             <h3 class="text-center mb-4">Create New Account</h3>
-           
+
             <form id="signupForm">
               <div class="mb-3">
                 <input type="text" id="firstName" class="form-control" placeholder="First Name" required>
@@ -31,7 +31,7 @@
               <div class="mb-3">
                 <input type="password" id="password" class="form-control" placeholder="Password" required>
               </div>
-             
+
               <div class="mb-3">
                 <label>Gender:</label><br>
                 <input type="radio" name="gender" value="Male" required> Male
@@ -63,30 +63,24 @@
       const pwd = document.getElementById("password").value.trim();
       const gender = document.querySelector('input[name="gender"]:checked')?.value;
 
-      // ✅ Validate phone number (must be 10 digits)
       if(!/^\d{10}$/.test(phone)){
         alert("Phone number must be exactly 10 digits");
         return;
       }
 
-      // ✅ Get existing users from localStorage
       const users = JSON.parse(localStorage.getItem("users")) || [];
-
-      // ✅ Check if user already exists
       const existingUser = users.find(u => u.email === email || u.phone === phone);
       if(existingUser){
-        alert("You already have an account with these details. Please log in.");
+        alert("Account already exists! Please log in.");
         window.location.href = "login.html";
         return;
       }
 
-      // ✅ Save new user to localStorage
       users.push({ fname, lname, email, phone, pwd, gender });
       localStorage.setItem("users", JSON.stringify(users));
 
-      alert("✅ Account created successfully! You can now log in.");
-localStorage.setItem("loggedInUser", JSON.stringify({ fname, lname, email, phone, gender }));
-window.location.href = "index.html";
+      alert("Account created successfully! You can now log in.");
+      window.location.href = "login.html";
     });
   </script>
 </body>
