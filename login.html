@@ -78,7 +78,12 @@
   </div>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e){
+    // ✅ If user is already logged in, go directly to index.html
+    if (localStorage.getItem('loggedInUser')) {
+      window.location.href = 'index.html'; // Change this to your actual homepage
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
       const email = document.getElementById('emailOrPhone').value.trim();
@@ -87,13 +92,17 @@
       const users = JSON.parse(localStorage.getItem('users')) || [];
       const user = users.find(u => u.email === email);
 
-      if(!user){
+      if (!user) {
         alert('No account found. Please create an account first.');
         return;
       }
 
-      if(user.pwd === pwd){
-        window.location.href = 'https://renukaui-art.github.io/suriWork/';
+      if (user.pwd === pwd) {
+        // ✅ Store login session
+        localStorage.setItem('loggedInUser', JSON.stringify(user));
+
+        // Redirect to index page
+        window.location.href = 'index.html'; // or your hosted homepage URL
       } else {
         alert('Incorrect password. Try again or reset it.');
       }
@@ -102,4 +111,3 @@
 
 </body>
 </html>
-
