@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Suriworks - That works for Everyone!</title>
   <meta name="description" content="Modern one-page company portfolio built with Bootstrap 5, HTML, CSS, and JavaScript." />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="./Fevicon.png" />
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
@@ -21,7 +24,7 @@
 
     html, body { height: 100%; scroll-behavior: smooth; }
     body{
-      font-family: 'Inter', sans-serif;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
       background: radial-gradient(1200px 600px at 20% 0%, rgba(110,231,248,.09), transparent 50%),
                   radial-gradient(1000px 500px at 80% 10%, rgba(155,140,255,.08), transparent 60%),
                   var(--bg);
@@ -46,48 +49,12 @@
     }
     .btn-brand:hover{ filter: brightness(1.1); }
 
-    /* Hero */
-    .hero{
-      position: relative;
-      min-height: 92vh;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      isolation: isolate;
-      text-align: center;
-    }
-    .hero:before, .hero:after{
-      content:"";
-      position:absolute;
-      width: 48rem; height: 48rem;
-      border-radius: 50%;
-      filter: blur(80px);
-      z-index:-1;
-    }
-    .hero:before{
-      background: radial-gradient(circle at 30% 30%, rgba(110,231,248,.20), transparent 50%);
-      top:-10rem; left:-12rem;
-    }
-    .hero:after{
-      background: radial-gradient(circle at 70% 70%, rgba(155,140,255,.20), transparent 55%);
-      bottom:-14rem; right:-16rem;
-    }
-
     .brand-animate {
       animation: glow 2s ease-in-out infinite alternate;
     }
     @keyframes glow {
       from { text-shadow: 0 0 5px #00cfff, 0 0 10px #00cfff, 0 0 20px #00cfff; color: #fff; }
       to { text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 40px #00f0ff; color: #e6ffff; }
-    }
-
-    .section-title{ font-weight:800; letter-spacing:-.015em; }
-    .muted{ color: var(--muted); }
-    .glass-card{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 1.25rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
     }
 
     footer{ border-top:1px solid rgba(255,255,255,.08); background: rgba(11,16,32,.65); }
@@ -99,102 +66,444 @@
 
 <!-- 🔐 LOGIN CHECK -->
 <script>
-  const stored = localStorage.getItem("suri_loggedIn");
-  const user = stored ? JSON.parse(stored) : null;
-  if (!user || !user.email) {
-    window.location.replace("index.html");
+  const storedUser = localStorage.getItem('suri_loggedIn');
+  if (!storedUser) {
+    window.location.replace('index.html');
   }
 </script>
 
 <!-- ✅ NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
-    <img src="./Fevicon.png" style="width: 140px;">
-    <div class="ms-auto d-flex align-items-center gap-3">
-      <span id="welcomeName" class="text-light small"></span>
-      <button class="btn btn-sm btn-brand" onclick="logout()">Logout</button>
+    <img src="./Fevicon.png" style="width: 150px;">
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#work">Work</a></li>
+        <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
+        <li class="nav-item"><a class="nav-link" href="surveillance.html">Surveillance</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="welcomeUser"></a></li>
+        <li class="nav-item ms-lg-2">
+          <button class="btn btn-sm btn-brand shadow-soft" onclick="logout()">Logout</button>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
 
-<!-- ✅ HERO -->
-<header id="home" class="hero">
+<!-- ✅ EXISTING PAGE CONTENT -->
+<!-- ⚠️ Keep your same content exactly as you provided -->
+<!-- Paste your original “hero”, “services”, “work”, “process”, “contact”, “footer” content here -->
+<!-- (You already had it all correct, no need to change design or layout) -->
+     
+<!-- HERO -->
+<header id="home" class="hero d-flex align-items-center justify-content-center text-center" 
+        style="min-height: 100vh;">
   <div class="container px-3">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-8">
+        
+        <!-- Eyebrow -->
         <div class="eyebrow mb-2">Strategy • Design • Innovation</div>
-        <h1 class="display-3 fw-bold mb-3">
-          WE ARE <span class="brand-animate">SURIWORKS</span>
-        </h1>
+        
+        <!-- Heading -->
+       <!-- Heading -->
+<h1 class="display-3 fw-bold mb-3">
+  WE ARE <span class="brand-animate">SURIWORKS</span>
+</h1>
+
+        
+        <!-- Subtext -->
         <p class="lead mb-4 mx-auto" style="max-width: 720px;">
-          Empowering businesses with modern IT and digital transformation solutions.
+          We are an IT consulting firm that provides innovative and cutting-edge 
+          solutions to businesses of all sizes.
         </p>
+        
+        <!-- Buttons -->
         <div class="d-flex flex-wrap justify-content-center gap-3">
-          <a href="#services" class="btn btn-brand btn-lg">Explore Our Services</a>
+         <a href="#services" class="btn btn-brand btn-lg">Explore Our Services</a>
           <a href="#contact" class="btn btn-outline-light btn-lg">Get Started</a>
         </div>
+        
+        <!-- Highlights -->
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 mt-5 small opacity-75">
+          <span><i class="bi bi-shield-check me-1"></i> ISO-grade security</span>
+          <span><i class="bi bi-rocket-takeoff me-1"></i> Agile delivery</span>
+          <span><i class="bi bi-stars me-1"></i> 100+ happy clients</span>
+        </div>
+        
       </div>
     </div>
   </div>
 </header>
 
-<!-- ✅ SERVICES -->
-<section id="services" class="py-6">
+
+
+  
+
+  
+  <!-- SERVICES -->
+<section id="services" class=" py-6 py-md-7">
   <div class="container text-center">
     <h2 class="section-title display-6 mb-3">Our Services</h2>
-    <p class="lead mb-5">We provide cutting-edge IT, AI, and Cloud solutions to accelerate growth.</p>
+    <p class="lead mb-5">
+      We offer a wide range of IT consulting and digital transformation services to help businesses stay ahead of the curve.
+    </p>
+
     <div class="row g-4">
-      <div class="col-md-4"><div class="glass-card p-4"><i class="bi bi-lightbulb display-5 mb-3 text-info"></i><h5>IT Consulting</h5></div></div>
-      <div class="col-md-4"><div class="glass-card p-4"><i class="bi bi-cloud-check display-5 mb-3 text-info"></i><h5>Cloud Solutions</h5></div></div>
-      <div class="col-md-4"><div class="glass-card p-4"><i class="bi bi-cpu display-5 mb-3 text-info"></i><h5>AI & Machine Learning</h5></div></div>
+      <!-- IT Consulting -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft">
+          <div class="card-body">
+            <i class="bi bi-lightbulb display-5 text-info mb-3"></i>
+            <h5 class="card-title">IT Consulting</h5>
+            <p class="card-text">Expert advice on optimizing IT infrastructure and improving business processes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Innovation -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft">
+          <div class="card-body">
+            <i class="bi bi-stars display-5 text-info mb-3"></i>
+            <h5 class="card-title">Innovation</h5>
+            <p class="card-text">Tailored innovative solutions that help businesses stay ahead of the competition.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cloud-Based Solutions -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft">
+          <div class="card-body">
+            <i class="bi bi-cloud-check display-5 text-info mb-3"></i>
+            <h5 class="card-title">Cloud-Based Solutions</h5>
+            <p class="card-text">Scalable, secure, cost-effective solutions including AWS, Azure, and GCP.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI & Machine Learning -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft">
+          <div class="card-body">
+            <i class="bi bi-cpu display-5 text-info mb-3"></i>
+            <h5 class="card-title">AI & Machine Learning</h5>
+            <p class="card-text">Leverage data analytics, AI, and ML to unlock deeper insights and drive growth.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cybersecurity -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft">
+          <div class="card-body">
+            <i class="bi bi-shield-lock display-5 text-info mb-3"></i>
+            <h5 class="card-title">Cybersecurity Talent</h5>
+            <p class="card-text">Protect your systems and data from cyber threats with top talent and strategies.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Emerging Technologies -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft">
+          <div class="card-body">
+            <i class="bi bi-rocket-takeoff display-5 text-info mb-3"></i>
+            <h5 class="card-title">Emerging Technologies</h5>
+            <p class="card-text">Stay future-ready with the latest in blockchain, IoT, and next-gen tech.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Influence -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft">
+          <div class="card-body">
+            <i class="bi bi-megaphone display-5 text-info mb-3"></i>
+            <h5 class="card-title">Influence</h5>
+            <p class="card-text">Build your brand and market presence with our marketing and digital services.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DevOps -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft">
+          <div class="card-body">
+            <i class="bi bi-code-slash display-5 text-info mb-3"></i>
+            <h5 class="card-title">DevOps</h5>
+            <p class="card-text">Streamline software development and delivery with modern DevOps practices.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cloud Migration -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft">
+          <div class="card-body">
+            <i class="bi bi-arrow-repeat display-5 text-info mb-3"></i>
+            <h5 class="card-title">Cloud Migration</h5>
+            <p class="card-text">Seamlessly migrate applications and data to the cloud for scalability and resilience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="mt-6">
+      <h3 class="display-6 mb-3 mt-3">Why Choose Us?</h3>
+      <p class="lead">
+        Our team combines deep expertise, a commitment to innovation, and exceptional customer service to deliver comprehensive solutions tailored to your needs.
+      </p>
+    </div>
+
+    <!-- Agenda -->
+    <div class="mt-6">
+  <h3 class="display-6 mb-3">SuriWorks Agenda</h3>
+  <ul class="list-unstyled text-start mx-auto agenda-list" style="max-width: 800px;">
+    <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i> Accelerate digital innovation, optimization, reinvention, and modernization</li>
+    <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i> Enhance customer and client experience through visibility and trust</li>
+    <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i> Leverage AI & Data Analytics to monetize insights and scale AI operations</li>
+    <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i> Improve IT resiliency and efficiency with cloud adoption</li>
+    <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i> Expand digital partnerships, talent, and risk management</li>
+  </ul>
+</div>
+
+
+  </div>
+</section>
+
+
+  <!-- WORK / CASE STUDIES -->
+<section id="work" class="container py-6 py-md-7">
+  <div class="row mb-4 mb-md-5">
+    <div class="col">
+      <h2 class="section-title display-6">Our Work</h2>
+      <p class="muted">How SuriWorks delivers measurable business outcomes through technology transformation.</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <!-- Digital Transformation -->
+    <div class="col-md-6 col-xl-4">
+      <article class="glass-card h-100 overflow-hidden reveal">
+        <img class="w-100" alt="Digital Transformation" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" />
+        <div class="p-4">
+          <h5 class="fw-bold mb-1">Enterprise Digital Transformation</h5>
+          <p class="muted small mb-3">Enabled a manufacturing leader to modernize legacy systems, driving 35% faster operations.</p>
+          <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#case1">Read case study</button>
+        </div>
+      </article>
+    </div>
+
+    <!-- Cloud & Infrastructure -->
+    <div class="col-md-6 col-xl-4">
+      <article class="glass-card h-100 overflow-hidden reveal">
+        <img class="w-100" alt="Cloud Modernization" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" />
+        <div class="p-4">
+          <h5 class="fw-bold mb-1">Cloud Modernization</h5>
+          <p class="muted small mb-3">Migrated enterprise workloads to AWS & Azure with zero downtime and 45% cost savings.</p>
+          <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#case2">Read case study</button>
+        </div>
+      </article>
+    </div>
+
+    <!-- AI & Data Analytics -->
+<div class="col-md-6 col-xl-4">
+  <article class="glass-card h-100 overflow-hidden reveal">
+    <img class="w-100" alt="AI & Data" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop" />
+    <div class="p-4">
+      <h5 class="fw-bold mb-1">AI-Driven Insights</h5>
+      <p class="muted small mb-3">Built predictive analytics for a retail client—boosted sales by 28% with real-time insights.</p>
+      <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#case3">Read case study</button>
+    </div>
+  </article>
+</div>
+
+<!-- Cybersecurity -->
+<div class="col-md-6 col-xl-4">
+  <article class="glass-card h-100 overflow-hidden reveal">
+    <img class="w-100" alt="Cybersecurity" src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=1200&auto=format&fit=crop" />
+    <div class="p-4">
+      <h5 class="fw-bold mb-1">Cybersecurity Reinforcement</h5>
+      <p class="muted small mb-3">Secured a fintech platform with ISO-grade compliance and 99.99% uptime.</p>
+      <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#case4">Read case study</button>
+    </div>
+  </article>
+</div>
+
+<!-- Agile Product Engineering -->
+<div class="col-md-6 col-xl-4">
+  <article class="glass-card h-100 overflow-hidden reveal">
+    <img class="w-100" alt="Agile Delivery" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1200&auto=format&fit=crop" />
+    <div class="p-4">
+      <h5 class="fw-bold mb-1">Agile Product Engineering</h5>
+      <p class="muted small mb-3">Delivered a customer app MVP in 10 weeks—accelerating time-to-market by 60%.</p>
+      <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#case5">Read case study</button>
+    </div>
+  </article>
+</div>
+
+
+    <!-- IT Consulting -->
+    <div class="col-md-6 col-xl-4">
+      <article class="glass-card h-100 overflow-hidden reveal">
+        <img class="w-100" alt="IT Consulting" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" />
+        <div class="p-4">
+          <h5 class="fw-bold mb-1">Strategic IT Consulting</h5>
+          <p class="muted small mb-3">Partnered with a healthcare startup to scale securely and win investor confidence.</p>
+          <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#case6">Read case study</button>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ✅ WORK -->
-<section id="work" class="container py-6">
-  <h2 class="section-title display-6 mb-3 text-center">Our Work</h2>
-  <p class="muted text-center mb-5">Delivering measurable outcomes for global clients.</p>
+
+  <!-- DELIVERY PROCESS -->
+<section id="process" class="container py-6 mt-2 pt-7">
   <div class="row g-4">
-    <div class="col-md-4"><div class="glass-card h-100 p-4">Digital Transformation</div></div>
-    <div class="col-md-4"><div class="glass-card h-100 p-4">Cloud Migration</div></div>
-    <div class="col-md-4"><div class="glass-card h-100 p-4">AI Solutions</div></div>
+    <div class="col-lg-5">
+      <h2 class="section-title display-6">Our Delivery Process</h2>
+      <p class="muted">Agile, transparent, and aligned with your business goals.</p>
+    </div>
+    <div class="col-lg-7">
+      <div class="timeline">
+        <!-- Step 1 -->
+        <div class="d-flex gap-3 align-items-start mb-4 reveal">
+          <div class="dot mt-1"></div>
+          <div>
+            <h6 class="mb-1">01 — Assess & Strategize</h6>
+            <p class="muted mb-0 small">We begin with a deep-dive assessment of your current systems, challenges, and opportunities to define a clear technology roadmap.</p>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="d-flex gap-3 align-items-start mb-4 reveal">
+          <div class="dot mt-1"></div>
+          <div>
+            <h6 class="mb-1">02 — Design & Architect</h6>
+            <p class="muted mb-0 small">Our experts design scalable cloud architectures, secure infrastructures, and user-centric experiences tailored to your industry.</p>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="d-flex gap-3 align-items-start mb-4 reveal">
+          <div class="dot mt-1"></div>
+          <div>
+            <h6 class="mb-1">03 — Build & Integrate</h6>
+            <p class="muted mb-0 small">We develop modular applications, implement DevOps pipelines, integrate AI models, and strengthen cybersecurity across all layers.</p>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="d-flex gap-3 align-items-start reveal">
+          <div class="dot mt-1"></div>
+          <div>
+            <h6 class="mb-1">04 — Optimize & Scale</h6>
+            <p class="muted mb-0 small">Post-launch, we monitor performance, optimize costs, run A/B experiments, and enable continuous innovation for long-term growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ✅ PROCESS -->
-<section id="process" class="container py-6 text-center">
-  <h2 class="section-title display-6 mb-3">Our Process</h2>
-  <p class="muted mb-4">We follow a transparent, agile, 4-step workflow:</p>
-  <ol class="text-start mx-auto" style="max-width:600px;">
-    <li>Assess & Strategize</li>
-    <li>Design & Architect</li>
-    <li>Develop & Integrate</li>
-    <li>Optimize & Scale</li>
-  </ol>
+
+  <!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS -->
+<section class="container py-6">
+  <div id="testimonials" class="carousel slide glass-card p-4 p-md-5 reveal" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <blockquote class="lead mb-0">
+          “SuriWorks guided our cloud migration flawlessly. Our systems are now faster, more secure, 
+          and highly scalable.”<br>
+          <span class="small muted">— Ankit R, CIO, Fintech Enterprise</span>
+        </blockquote>
+      </div>
+      <div class="carousel-item">
+        <blockquote class="lead mb-0">
+          “Their AI-driven insights helped us optimize operations and unlock new revenue streams. 
+          A real game-changer.”<br>
+          <span class="small muted">— Sarah T, VP Operations, Retail Solutions</span>
+        </blockquote>
+      </div>
+      <div class="carousel-item">
+        <blockquote class="lead mb-0">
+          “From strategy to execution, SuriWorks has been a trusted partner. 
+          Their agile approach kept us ahead of the curve.”<br>
+          <span class="small muted">— David L, CEO, Healthcare Startup</span>
+        </blockquote>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ✅ CONTACT -->
-<section id="contact" class="container py-6 text-center">
-  <h2 class="section-title display-6 mb-3">Contact Us</h2>
-  <p class="muted">We’ll get back to you within one business day.</p>
-  <p><i class="bi bi-envelope me-2"></i> hello@suriworks.com</p>
-  <p><i class="bi bi-telephone me-2"></i> +91 98765 43210</p>
-</section>
 
-<!-- ✅ FOOTER -->
-<footer class="text-center text-light py-4 mt-5">
-  <p>© <span id="year"></span> SuriWorks — All Rights Reserved.</p>
-</footer>
+  <!-- CONTACT -->
+  <section id="contact" class="container py-6 py-md-7">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6">
+        <h2 class="section-title display-6">Get In Touch</h2>
+        <p class="muted">We’ll get back to you within one business day.</p>
+        <ul class="list-unstyled muted small">
+          <li class="mb-2"><i class="bi bi-envelope-open me-2"></i> hello@suriworks.com</li>
+          <li class="mb-2"><i class="bi bi-telephone me-2"></i> +91 98765 43210</li>
+          <li><i class="bi bi-geo me-2"></i> Vishakapatnam • Remote‑first</li>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <form id="contactForm" class="glass-card p-4 p-md-5">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Name</label>
+              <input class="form-control" name="name" required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" required />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Subject</label>
+              <input class="form-control" name="subject" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Your message (Optional) 
+                
+              </label>
+              <textarea class="form-control" rows="4" name="message" required></textarea>
+            </div>
+            <div class="col-12 d-flex align-items-center gap-3">
+              <button class="btn btn-brand" type="submit">Send message</button>
+              <span id="formMsg" class="small muted"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 
+
+<!-- ✅ JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  const userData = JSON.parse(localStorage.getItem("suri_loggedIn") || "{}");
-  document.getElementById("welcomeName").textContent = `Welcome, ${userData.firstName || 'User'}!`;
+  // Display user name
+  const userData = JSON.parse(localStorage.getItem('suri_loggedIn') || '{}');
+  const welcomeEl = document.getElementById('welcomeUser');
+  if (userData.firstName) {
+    welcomeEl.textContent = `Welcome, ${userData.firstName}`;
+  } else if (userData.email) {
+    welcomeEl.textContent = `Welcome, ${userData.email.split('@')[0]}`;
+  } else {
+    welcomeEl.textContent = 'Welcome!';
+  }
 
-  function logout(){
-    localStorage.removeItem("suri_loggedIn");
-    window.location.replace("index.html");
+  // Logout function
+  function logout() {
+    localStorage.removeItem('suri_loggedIn');
+    window.location.replace('index.html');
   }
 </script>
 </body>
