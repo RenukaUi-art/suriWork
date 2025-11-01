@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login | Suriworks</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1920&q=80')
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80')
         no-repeat center center fixed;
       background-size: cover;
       display: flex;
@@ -17,42 +16,51 @@
       align-items: center;
       height: 100vh;
     }
+
     .login-card {
       width: 100%;
       max-width: 400px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       padding: 30px;
     }
+
     .brand {
       color: #1877f2;
-      font-size: 36px;
+      font-size: 34px;
       font-weight: bold;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
+
     .btn-primary {
       background-color: #1877f2;
       border: none;
     }
+
     .btn-primary:hover {
       background-color: #145dbf;
     }
+
     .small-link {
       font-size: 14px;
       color: #1877f2;
       text-decoration: none;
     }
+
     .small-link:hover {
       text-decoration: underline;
+    }
+
+    hr {
+      margin: 1.5rem 0;
     }
   </style>
 </head>
 <body>
   <div class="login-card">
     <div class="brand">Suriworks</div>
-
     <form id="loginForm">
       <div class="mb-3">
         <input type="text" class="form-control" id="emailOrPhone" placeholder="Email address or phone number" required />
@@ -60,7 +68,6 @@
       <div class="mb-3">
         <input type="password" class="form-control" id="password" placeholder="Password" required />
       </div>
-
       <button type="submit" class="btn btn-primary w-100">Log In</button>
 
       <div class="text-center mt-3">
@@ -73,42 +80,39 @@
     </form>
   </div>
 
- <script>
-  // ✅ Check if a user is already logged in
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  if (loggedInUser && loggedInUser.email) {
-    // Redirect only if real session exists
-    window.location.href = "https://renukaui-art.github.io/suriWork/";
-  }
-
-  // ✅ Handle login form
-  document.getElementById('loginForm').addEventListener('submit', function(e){
-    e.preventDefault();
-
-    const emailOrPhone = document.getElementById('emailOrPhone').value.trim().toLowerCase();
-    const pwd = document.getElementById('password').value.trim();
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    // Find matching user
-    const user = users.find(u => u.email === emailOrPhone || u.phone === emailOrPhone);
-
-    if(!user){
-      alert('❌ No account found. Please create an account first.');
-      return;
-    }
-
-    if(user.pwd === pwd){
-      // ✅ Save session in localStorage
-      localStorage.setItem("loggedInUser", JSON.stringify(user));
-      alert(`✅ Welcome ${user.fname || ''}! Redirecting...`);
+  <script>
+    // ✅ Redirect if already logged in and has valid session
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (loggedInUser && loggedInUser.email) {
       window.location.href = "https://renukaui-art.github.io/suriWork/";
-    } else {
-      alert('⚠️ Incorrect password. Try again or reset it.');
     }
-  });
-</script>
 
+    // ✅ Handle login form
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const emailOrPhone = document.getElementById("emailOrPhone").value.trim().toLowerCase();
+      const pwd = document.getElementById("password").value.trim();
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      // Find user by email or phone
+      const user = users.find((u) => u.email === emailOrPhone || u.phone === emailOrPhone);
+
+      if (!user) {
+        alert("❌ No account found. Please create an account first.");
+        return;
+      }
+
+      if (user.pwd === pwd) {
+        // Save session
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        alert(`✅ Welcome ${user.fname || user.email}! Redirecting...`);
+        window.location.href = "https://renukaui-art.github.io/suriWork/";
+      } else {
+        alert("⚠️ Incorrect password. Try again or reset it.");
+      }
+    });
+  </script>
 </body>
 </html>
-
