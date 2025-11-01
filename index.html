@@ -122,85 +122,95 @@
       </div>
     </div>
   </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-  <script>
-    // Switch between forms
-    function showForm(id) {
-      document.querySelectorAll('.fade').forEach(f => f.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
+  // Switch forms
+  function showForm(id) {
+    document.querySelectorAll('.fade').forEach(f => f.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
 
-    // Helpers
-    function getUsers() {
-      return JSON.parse(localStorage.getItem('suri_users') || '{}');
-    }
-    function saveUsers(users) {
-      localStorage.setItem('suri_users', JSON.stringify(users));
-    }
-    function hash(str) {
-      try { return btoa(unescape(encodeURIComponent(str))).slice(0,40); } catch { return str; }
-    }
+  // Helpers
+  function getUsers() {
+    return JSON.parse(localStorage.getItem('suri_users') || '{}');
+  }
+  function saveUsers(users) {
+    localStorage.setItem('suri_users', JSON.stringify(users));
+  }
+  function hash(str) {
+    try { return btoa(unescape(encodeURIComponent(str))).slice(0,40); } catch { return str; }
+  }
 
-    // ✅ Only redirect if a *real* logged-in user exists
-    const stored = localStorage.getItem('suri_loggedIn');
-    try {
-      const user = stored ? JSON.parse(stored) : null;
-      if (user && user.email) {
-        window.location.href = 'home.html';
-      }
-    } catch (e) {
-      localStorage.removeItem('suri_loggedIn');
-    }
-
-    // ✅ Login
-    document.getElementById('loginBtn').addEventListener('click', () => {
-      const email = loginEmail.value.trim().toLowerCase();
-      const pass = loginPassword.value.trim();
-      const users = getUsers();
-      const err = document.getElementById('loginError');
-      err.textContent = '';
-
-      if (!email || !pass) return err.textContent = 'Enter email and password';
-      if (!users[email]) return err.textContent = 'Account not found';
-      if (users[email].password !== hash(pass)) return err.textContent = 'Incorrect password';
-
-      localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
+  // ✅ SAFER Auto-redirect (only after DOM ready)
+  const stored = localStorage.getItem('suri_loggedIn');
+  try {
+    const user = stored ? JSON.parse(stored) : null;
+    // Check if real user exists with valid email property
+    if (user && typeof user.email === 'string' && user.email.includes('@')) {
+      console.log("User found:", user.email);
       window.location.href = 'home.html';
-    });
+      return;
+    } else {
+      console.log("No valid login found, stay on login page.");
+    }
+  } catch (e) {
+    console.warn("Invalid stored login, clearing...");
+    localStorage.removeItem('suri_loggedIn');
+  }
 
-    // ✅ Register
-    document.getElementById('registerBtn').addEventListener('click', () => {
-      const name = regName.value.trim();
-      const email = regEmail.value.trim().toLowerCase();
-      const pass = regPassword.value.trim();
-      const err = document.getElementById('regError');
-      err.textContent = '';
+  // ✅ LOGIN
+  document.getElementById('loginBtn').addEventListener('click', () => {
+    const email = loginEmail.value.trim().toLowerCase();
+    const pass = loginPassword.value.trim();
+    const users = getUsers();
+    const err = document.getElementById('loginError');
+    err.textContent = '';
 
-      if (!name || !email || !pass) return err.textContent = 'All fields required';
-      if (pass.length < 6) return err.textContent = 'Password too short';
+    if (!email || !pass) return err.textContent = 'Enter email and password';
+    if (!users[email]) return err.textContent = 'Account not found';
+    if (users[email].password !== hash(pass)) return err.textContent = 'Incorrect password';
 
-      const users = getUsers();
-      if (users[email]) return err.textContent = 'Email already registered';
+    localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
+    window.location.href = 'home.html';
+  });
 
-      users[email] = { name, email, password: hash(pass) };
-      saveUsers(users);
-      localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
-      window.location.href = 'home.html';
-    });
+  // ✅ REGISTER
+  document.getElementById('registerBtn').addEventListener('click', () => {
+    const name = regName.value.trim();
+    const email = regEmail.value.trim().toLowerCase();
+    const pass = regPassword.value.trim();
+    const err = document.getElementById('regError');
+    err.textContent = '';
 
-    // ✅ Forgot password
-    document.getElementById('forgotBtn').addEventListener('click', () => {
-      const email = forgotEmail.value.trim().toLowerCase();
-      const msg = document.getElementById('forgotMsg');
-      const users = getUsers();
+    if (!name || !email || !pass) return err.textContent = 'All fields required';
+    if (pass.length < 6) return err.textContent = 'Password too short';
 
-      if (!email) return msg.textContent = 'Enter your registered email';
-      if (!users[email]) return msg.textContent = 'Email not found';
+    const users = getUsers();
+    if (users[email]) return err.textContent = 'Email already registered';
 
-      users[email].password = hash('123456'); // reset to default
-      saveUsers(users);
-      msg.textContent = 'Password reset to: 123456';
-    });
-  </script>
+    users[email] = { name, email, password: hash(pass) };
+    saveUsers(users);
+    localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
+    window.location.href = 'home.html';
+  });
+
+  // ✅ FORGOT PASSWORD
+  document.getElementById('forgotBtn').addEventListener('click', () => {
+    const email = forgotEmail.value.trim().toLowerCase();
+    const msg = document.getElementById('forgotMsg');
+    const users = getUsers();
+
+    if (!email) return msg.textContent = 'Enter your registered email';
+    if (!users[email]) return msg.textContent = 'Email not found';
+
+    users[email].password = hash('123456'); // reset password
+    saveUsers(users);
+    msg.textContent = 'Password reset to: 123456';
+  });
+
+});
+</script>
+
 </body>
 </html>
