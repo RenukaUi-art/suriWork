@@ -73,40 +73,42 @@
     </form>
   </div>
 
-  <script>
-    // Auto redirect if already logged in
-    if (localStorage.getItem("loggedInUser")) {
-      window.location.href = "index.html";
+ <script>
+  // ✅ Check if a user is already logged in
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (loggedInUser && loggedInUser.email) {
+    // Redirect only if real session exists
+    window.location.href = "https://renukaui-art.github.io/suriWork/";
+  }
+
+  // ✅ Handle login form
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const emailOrPhone = document.getElementById('emailOrPhone').value.trim().toLowerCase();
+    const pwd = document.getElementById('password').value.trim();
+
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Find matching user
+    const user = users.find(u => u.email === emailOrPhone || u.phone === emailOrPhone);
+
+    if(!user){
+      alert('❌ No account found. Please create an account first.');
+      return;
     }
 
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
-      e.preventDefault();
+    if(user.pwd === pwd){
+      // ✅ Save session in localStorage
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      alert(`✅ Welcome ${user.fname || ''}! Redirecting...`);
+      window.location.href = "https://renukaui-art.github.io/suriWork/";
+    } else {
+      alert('⚠️ Incorrect password. Try again or reset it.');
+    }
+  });
+</script>
 
-      const input = document.getElementById("emailOrPhone").value.trim();
-      const pwd = document.getElementById("password").value.trim();
-
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-
-      // match both email or phone
-      const user = users.find((u) => u.email === input || u.phone === input);
-
-      if (!user) {
-        alert("❌ No account found. Please create an account first.");
-        return;
-      }
-
-      if (user.pwd === pwd) {
-        alert("✅ Login successful!");
-
-        // save login info
-        localStorage.setItem("loggedInUser", user.email);
-
-        // redirect (MUST use full path for GitHub Pages)
-        window.location.href = "https://renukaui-art.github.io/suriWork/index.html";
-      } else {
-        alert("❌ Incorrect password. Try again.");
-      }
-    });
-  </script>
 </body>
 </html>
+
