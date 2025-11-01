@@ -175,7 +175,7 @@
       users[email] = { name, email, password: hash(pass) };
       saveUsers(users);
       localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
-      window.location.href = 'index.html';
+         window.location.href = 'home.html';
     });
 
     // Forgot password
