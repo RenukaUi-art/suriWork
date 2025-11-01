@@ -10,10 +10,8 @@
   <style>
     :root {
       --bg: #0b1020;
-      --card: rgba(255,255,255,0.05);
       --brand: #6ee7f8;
       --brand-2: #9b8cff;
-      --muted: #aab0c0;
     }
     body {
       font-family: 'Inter', sans-serif;
@@ -25,192 +23,158 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
     }
     .login-card {
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 1.25rem;
-      box-shadow: 0 10px 40px rgba(0,0,0,.5);
-      padding: 2.5rem 2rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+      padding: 2rem;
       max-width: 400px;
       width: 100%;
       text-align: center;
     }
-    .login-card img {
-      width: 120px;
-      margin-bottom: 1rem;
-    }
-    .login-card h3 {
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: var(--brand);
-      text-shadow: 0 0 8px rgba(110,231,248,.4);
-    }
+    .login-card img { width: 120px; margin-bottom: 1rem; }
+    h3 { color: var(--brand); margin-bottom: 1.5rem; }
     input {
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
       border-radius: 8px;
       padding: 10px;
-      color: #fff;
-    }
-    input:focus {
-      border-color: var(--brand);
-      box-shadow: 0 0 0 0.2rem rgba(110,231,248,.25);
-      outline: none;
     }
     .btn-brand {
-      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      background: linear-gradient(90deg,var(--brand),var(--brand-2));
       border: none;
+      border-radius: 8px;
       color: #0b1020;
       font-weight: 700;
       width: 100%;
-      border-radius: 8px;
       padding: 10px;
     }
-    .btn-brand:hover { filter: brightness(1.1); }
-    .link-small {
-      color: var(--brand);
-      font-size: 0.9rem;
-      cursor: pointer;
-      display: inline-block;
-      margin-top: .5rem;
-    }
-    .link-small:hover { text-decoration: underline; }
     .fade { display: none; }
-    .fade.active { display: block; animation: fadeIn .4s ease; }
-    @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+    .fade.active { display: block; }
+    .link-small { color: var(--brand); cursor: pointer; font-size: 0.9rem; }
+    .link-small:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-
   <div class="login-card">
     <img src="./Fevicon.png" alt="SuriWorks Logo">
     <h3>Welcome to SuriWorks</h3>
 
-    <!-- Login Form -->
+    <!-- Login -->
     <div id="loginForm" class="fade active">
-      <input type="email" id="loginEmail" class="form-control mb-3" placeholder="Email" />
-      <input type="password" id="loginPassword" class="form-control mb-3" placeholder="Password" />
+      <input type="email" id="loginEmail" class="form-control mb-3" placeholder="Email">
+      <input type="password" id="loginPassword" class="form-control mb-3" placeholder="Password">
       <button class="btn btn-brand mb-3" id="loginBtn">Login</button>
       <div id="loginError" class="text-danger small mb-2"></div>
-      <div>
-        <span class="link-small" onclick="showForm('registerForm')">Create account</span> |
-        <span class="link-small" onclick="showForm('forgotForm')">Forgot password?</span>
-      </div>
+      <span class="link-small" onclick="showForm('registerForm')">Create account</span> |
+      <span class="link-small" onclick="showForm('forgotForm')">Forgot password?</span>
     </div>
 
-    <!-- Register Form -->
+    <!-- Register -->
     <div id="registerForm" class="fade">
-      <input type="text" id="regName" class="form-control mb-3" placeholder="Full Name" />
-      <input type="email" id="regEmail" class="form-control mb-3" placeholder="Email" />
-      <input type="password" id="regPassword" class="form-control mb-3" placeholder="Password (min 6 chars)" />
+      <input type="text" id="regName" class="form-control mb-3" placeholder="Full Name">
+      <input type="email" id="regEmail" class="form-control mb-3" placeholder="Email">
+      <input type="password" id="regPassword" class="form-control mb-3" placeholder="Password (min 6 chars)">
       <button class="btn btn-brand mb-3" id="registerBtn">Create Account</button>
       <div id="regError" class="text-danger small mb-2"></div>
-      <div>
-        <span class="link-small" onclick="showForm('loginForm')">Back to Login</span>
-      </div>
+      <span class="link-small" onclick="showForm('loginForm')">Back to Login</span>
     </div>
 
-    <!-- Forgot Password Form -->
+    <!-- Forgot -->
     <div id="forgotForm" class="fade">
-      <input type="email" id="forgotEmail" class="form-control mb-3" placeholder="Enter your email" />
+      <input type="email" id="forgotEmail" class="form-control mb-3" placeholder="Enter your email">
       <button class="btn btn-brand mb-3" id="forgotBtn">Reset Password</button>
       <div id="forgotMsg" class="text-info small mb-2"></div>
-      <div>
-        <span class="link-small" onclick="showForm('loginForm')">Back to Login</span>
-      </div>
+      <span class="link-small" onclick="showForm('loginForm')">Back to Login</span>
     </div>
   </div>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
 
-  // Switch forms
-  function showForm(id) {
-    document.querySelectorAll('.fade').forEach(f => f.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
 
-  // Helpers
-  function getUsers() {
-    return JSON.parse(localStorage.getItem('suri_users') || '{}');
-  }
-  function saveUsers(users) {
-    localStorage.setItem('suri_users', JSON.stringify(users));
-  }
-  function hash(str) {
-    try { return btoa(unescape(encodeURIComponent(str))).slice(0,40); } catch { return str; }
-  }
-
-  // ✅ SAFER Auto-redirect (only after DOM ready)
-  const stored = localStorage.getItem('suri_loggedIn');
-  try {
-    const user = stored ? JSON.parse(stored) : null;
-    // Check if real user exists with valid email property
-    if (user && typeof user.email === 'string' && user.email.includes('@')) {
-      console.log("User found:", user.email);
-      window.location.href = 'home.html';
-      return;
-    } else {
-      console.log("No valid login found, stay on login page.");
+    function showForm(id) {
+      document.querySelectorAll('.fade').forEach(f => f.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
-  } catch (e) {
-    console.warn("Invalid stored login, clearing...");
-    localStorage.removeItem('suri_loggedIn');
-  }
 
-  // ✅ LOGIN
-  document.getElementById('loginBtn').addEventListener('click', () => {
-    const email = loginEmail.value.trim().toLowerCase();
-    const pass = loginPassword.value.trim();
-    const users = getUsers();
-    const err = document.getElementById('loginError');
-    err.textContent = '';
+    function getUsers() {
+      return JSON.parse(localStorage.getItem('suri_users') || '{}');
+    }
+    function saveUsers(users) {
+      localStorage.setItem('suri_users', JSON.stringify(users));
+    }
+    function hash(str) {
+      try { return btoa(unescape(encodeURIComponent(str))).slice(0,40); } catch { return str; }
+    }
 
-    if (!email || !pass) return err.textContent = 'Enter email and password';
-    if (!users[email]) return err.textContent = 'Account not found';
-    if (users[email].password !== hash(pass)) return err.textContent = 'Incorrect password';
+    // ✅ Check only real valid user
+    const raw = localStorage.getItem('suri_loggedIn');
+    if (raw) {
+      try {
+        const user = JSON.parse(raw);
+        if (user && typeof user.email === "string" && user.email.includes("@") && user.password) {
+          window.location.replace("home.html");
+          return;
+        } else {
+          localStorage.removeItem("suri_loggedIn");
+        }
+      } catch {
+        localStorage.removeItem("suri_loggedIn");
+      }
+    }
 
-    localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
-    window.location.href = 'home.html';
+    // ✅ Login
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const email = loginEmail.value.trim().toLowerCase();
+      const pass = loginPassword.value.trim();
+      const users = getUsers();
+      const err = document.getElementById('loginError');
+      err.textContent = '';
+
+      if (!email || !pass) return err.textContent = 'Enter email and password';
+      if (!users[email]) return err.textContent = 'Account not found';
+      if (users[email].password !== hash(pass)) return err.textContent = 'Incorrect password';
+
+      localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
+      window.location.replace("home.html");
+    });
+
+    // ✅ Register
+    document.getElementById('registerBtn').addEventListener('click', () => {
+      const name = regName.value.trim();
+      const email = regEmail.value.trim().toLowerCase();
+      const pass = regPassword.value.trim();
+      const err = document.getElementById('regError');
+      err.textContent = '';
+
+      if (!name || !email || !pass) return err.textContent = 'All fields required';
+      if (pass.length < 6) return err.textContent = 'Password too short';
+
+      const users = getUsers();
+      if (users[email]) return err.textContent = 'Email already registered';
+
+      users[email] = { name, email, password: hash(pass) };
+      saveUsers(users);
+      localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
+      window.location.replace("home.html");
+    });
+
+    // ✅ Forgot
+    document.getElementById('forgotBtn').addEventListener('click', () => {
+      const email = forgotEmail.value.trim().toLowerCase();
+      const msg = document.getElementById('forgotMsg');
+      const users = getUsers();
+      if (!email) return msg.textContent = 'Enter your registered email';
+      if (!users[email]) return msg.textContent = 'Email not found';
+      users[email].password = hash('123456');
+      saveUsers(users);
+      msg.textContent = 'Password reset to: 123456';
+    });
+
   });
-
-  // ✅ REGISTER
-  document.getElementById('registerBtn').addEventListener('click', () => {
-    const name = regName.value.trim();
-    const email = regEmail.value.trim().toLowerCase();
-    const pass = regPassword.value.trim();
-    const err = document.getElementById('regError');
-    err.textContent = '';
-
-    if (!name || !email || !pass) return err.textContent = 'All fields required';
-    if (pass.length < 6) return err.textContent = 'Password too short';
-
-    const users = getUsers();
-    if (users[email]) return err.textContent = 'Email already registered';
-
-    users[email] = { name, email, password: hash(pass) };
-    saveUsers(users);
-    localStorage.setItem('suri_loggedIn', JSON.stringify(users[email]));
-    window.location.href = 'home.html';
-  });
-
-  // ✅ FORGOT PASSWORD
-  document.getElementById('forgotBtn').addEventListener('click', () => {
-    const email = forgotEmail.value.trim().toLowerCase();
-    const msg = document.getElementById('forgotMsg');
-    const users = getUsers();
-
-    if (!email) return msg.textContent = 'Enter your registered email';
-    if (!users[email]) return msg.textContent = 'Email not found';
-
-    users[email].password = hash('123456'); // reset password
-    saveUsers(users);
-    msg.textContent = 'Password reset to: 123456';
-  });
-
-});
-</script>
-
+  </script>
 </body>
 </html>
