@@ -142,8 +142,16 @@
     }
 
     // Auto redirect if already logged in
-    const user = JSON.parse(localStorage.getItem('suri_loggedIn') || 'null');
-    if (user) window.location.href = 'home.html';
+   const stored = localStorage.getItem('suri_loggedIn');
+try {
+  const user = stored ? JSON.parse(stored) : null;
+  if (user && user.email) {
+    window.location.href = 'home.html';
+  }
+} catch(e) {
+  localStorage.removeItem('suri_loggedIn');
+}
+
 
     // Login
     document.getElementById('loginBtn').addEventListener('click', () => {
