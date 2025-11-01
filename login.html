@@ -94,7 +94,7 @@
       const user = users.find(u => u.email === emailOrPhone || u.phone === emailOrPhone);
 
       if (!user) {
-        alert('❌ No account found with these details. Please create an account first.');
+        alert('❌ No account found. Please create an account first.');
         return;
       }
 
@@ -103,7 +103,7 @@
         // Save session
         localStorage.setItem('loggedInUser', user.email);
         // Redirect to your main page
-        window.location.href = 'https://renukaui-art.github.io/suriWork/index.html';
+        window.location.href = 'index.html'; // 👈 redirects to your main file
       } else {
         alert('❌ Incorrect password. Try again or reset it.');
       }
