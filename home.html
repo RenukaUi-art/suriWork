@@ -134,12 +134,13 @@
   </style>
 </head>
 <body>
- <script>
+<script>
   const loggedIn = JSON.parse(localStorage.getItem('suri_loggedIn') || 'null');
   if (!loggedIn || !loggedIn.email) {
-    window.location.href = 'index.html'; // go back to login if not logged in
+    window.location.replace('index.html'); // redirect to login
   }
 </script>
+
 
 
   <!-- NAVBAR -->
@@ -646,5 +647,6 @@
   </style>
 </body>
 </html>
+
 
 
