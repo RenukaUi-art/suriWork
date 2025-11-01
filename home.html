@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Suriworks - That works for Everyone!</title>
+  <meta name="description" content="Modern one-page company portfolio built with Bootstrap 5, HTML, CSS, and JavaScript." />
 
   <link rel="icon" type="image/png" href="./Fevicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,88 +14,60 @@
   <style>
     :root{
       --bg: #0b1020;
-      --card: #0f1530;
       --brand: #6ee7f8;
       --brand-2: #9b8cff;
       --muted: #aab0c0;
     }
 
     body{
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      font-family: 'Inter', sans-serif;
       background: radial-gradient(1200px 600px at 20% 0%, rgba(110,231,248,.09), transparent 50%),
                   radial-gradient(1000px 500px at 80% 10%, rgba(155,140,255,.08), transparent 60%),
                   var(--bg);
       color: #e9ecf5;
-      scroll-behavior: smooth;
     }
 
+    /* Navbar */
     .navbar{
       background: rgba(11,16,32,.55);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,.06);
     }
-
     .nav-link{ color:#cfd6e7 !important; font-weight:500; }
     .nav-link:hover, .nav-link.active{ color:white !important; }
 
     .btn-brand{
       background: linear-gradient(90deg,var(--brand),var(--brand-2));
-      border:0;
-      color:#0b1020;
-      font-weight:700;
+      border:0; color:#0b1020; font-weight:700;
     }
-
     .btn-brand:hover{ filter:brightness(1.1); }
 
-    .brand-animate {
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #00cfff, 0 0 10px #00cfff; color:#fff; }
-      to { text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff; color:#e6ffff; }
+    /* Heading styling */
+    h1,h2,h3,h4,h5,h6,.section-title{
+      color:white !important;
+      font-weight:700 !important;
     }
 
-    /* Headings white bold */
-    h2, h3, h5, .section-title {
-      color: #fff;
-      font-weight: 700 !important;
-    }
-
-    /* Same height for service cards */
-    .card.h-100 {
-      min-height: 280px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .card-title {
-      color: white;
-      font-weight: 600;
-    }
-
-    /* Agenda Center */
-    .agenda-list {
-      text-align: left;
-      margin: 0 auto;
-    }
-
-    footer {
-      border-top:1px solid rgba(255,255,255,.08);
-      background: rgba(11,16,32,.65);
+    /* Agenda centered */
+    .agenda-list{
+      text-align:left;
+      max-width:800px;
+      margin:0 auto;
     }
 
     #welcomeText {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: white;
-      margin-bottom: 1rem;
+      color:white;
+      font-weight:600;
+      font-size:1.6rem;
+      margin-bottom:1rem;
     }
+
+    footer{ border-top:1px solid rgba(255,255,255,.08); background:rgba(11,16,32,.65); }
   </style>
 </head>
-
 <body>
-<!-- 🔐 LOGIN CHECK -->
+
+<!-- LOGIN CHECK -->
 <script>
   const storedUser = localStorage.getItem('suri_loggedIn');
   if (!storedUser) window.location.replace('index.html');
@@ -113,7 +86,7 @@
         <li class="nav-item"><a class="nav-link" href="surveillance.html">Surveillance</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         <li class="nav-item ms-lg-2">
-          <button class="btn btn-sm btn-brand shadow-soft" onclick="logout()">Logout</button>
+          <button class="btn btn-sm btn-brand" onclick="logout()">Logout</button>
         </li>
       </ul>
     </div>
@@ -121,19 +94,19 @@
 </nav>
 
 <!-- ✅ HERO -->
-<header id="home" class="d-flex align-items-center justify-content-center text-center" style="min-height:100vh;">
+<header id="home" class="hero d-flex align-items-center justify-content-center text-center" style="min-height:100vh;">
   <div class="container px-3">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-8">
-        <!-- Welcome User -->
         <div id="welcomeText"></div>
 
         <div class="eyebrow mb-2">Strategy • Design • Innovation</div>
         <h1 class="display-3 fw-bold mb-3">
-          WE ARE <span class="brand-animate">SURIWORKS</span>
+          WE ARE <span style="color:#6ee7f8;text-shadow:0 0 10px #6ee7f8;">SURIWORKS</span>
         </h1>
         <p class="lead mb-4 mx-auto" style="max-width:720px;">
-          We are an IT consulting firm that provides innovative and cutting-edge solutions to businesses of all sizes.
+          We are an IT consulting firm that provides innovative and cutting-edge 
+          solutions to businesses of all sizes.
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
           <a href="#services" class="btn btn-brand btn-lg">Explore Our Services</a>
@@ -149,55 +122,8 @@
   </div>
 </header>
 
-<!-- ✅ YOUR EXISTING CONTENT -->
-    
-     
-<!-- HERO -->
-<header id="home" class="hero d-flex align-items-center justify-content-center text-center" 
-        style="min-height: 100vh;">
-  <div class="container px-3">
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-8">
-        
-        <!-- Eyebrow -->
-        <div class="eyebrow mb-2">Strategy • Design • Innovation</div>
-        
-        <!-- Heading -->
-       <!-- Heading -->
-<h1 class="display-3 fw-bold mb-3">
-  WE ARE <span class="brand-animate">SURIWORKS</span>
-</h1>
+<!-- Keep rest of your Services, Work, Process, Contact, Footer sections as they are -->
 
-        
-        <!-- Subtext -->
-        <p class="lead mb-4 mx-auto" style="max-width: 720px;">
-          We are an IT consulting firm that provides innovative and cutting-edge 
-          solutions to businesses of all sizes.
-        </p>
-        
-        <!-- Buttons -->
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-         <a href="#services" class="btn btn-brand btn-lg">Explore Our Services</a>
-          <a href="#contact" class="btn btn-outline-light btn-lg">Get Started</a>
-        </div>
-        
-        <!-- Highlights -->
-        <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 mt-5 small opacity-75">
-          <span><i class="bi bi-shield-check me-1"></i> ISO-grade security</span>
-          <span><i class="bi bi-rocket-takeoff me-1"></i> Agile delivery</span>
-          <span><i class="bi bi-stars me-1"></i> 100+ happy clients</span>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</header>
-
-
-
-  
-
-  
   <!-- SERVICES -->
 <section id="services" class=" py-6 py-md-7">
   <div class="container text-center">
@@ -577,11 +503,9 @@
   <button id="backToTop" class="btn btn-light position-fixed" style="right:16px; bottom:16px; display:none;">
     <i class="bi bi-arrow-up"></i>
   </button>
-
 <!-- ✅ JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  // ✅ Display user name
   const userData = JSON.parse(localStorage.getItem('suri_loggedIn') || '{}');
   const welcomeEl = document.getElementById('welcomeText');
   if (userData.firstName) {
@@ -592,7 +516,6 @@
     welcomeEl.textContent = 'Welcome!';
   }
 
-  // ✅ Logout
   function logout(){
     localStorage.removeItem('suri_loggedIn');
     window.location.replace('index.html');
