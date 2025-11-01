@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login | Suriworks</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
   <style>
     body {
@@ -17,7 +17,6 @@
       align-items: center;
       height: 100vh;
     }
-
     .login-card {
       width: 100%;
       max-width: 400px;
@@ -26,7 +25,6 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       padding: 30px;
     }
-
     .brand {
       color: #1877f2;
       font-size: 36px;
@@ -34,38 +32,33 @@
       text-align: center;
       margin-bottom: 20px;
     }
-
     .btn-primary {
       background-color: #1877f2;
       border: none;
     }
-
     .btn-primary:hover {
       background-color: #145dbf;
     }
-
     .small-link {
       font-size: 14px;
       color: #1877f2;
       text-decoration: none;
     }
-
     .small-link:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-
   <div class="login-card">
     <div class="brand">Suriworks</div>
 
     <form id="loginForm">
       <div class="mb-3">
-        <input type="text" class="form-control" id="emailOrPhone" placeholder="Email address or phone number" required>
+        <input type="text" class="form-control" id="emailOrPhone" placeholder="Email address or phone number" required />
       </div>
       <div class="mb-3">
-        <input type="password" class="form-control" id="password" placeholder="Password" required>
+        <input type="password" class="form-control" id="password" placeholder="Password" required />
       </div>
 
       <button type="submit" class="btn btn-primary w-100">Log In</button>
@@ -73,7 +66,7 @@
       <div class="text-center mt-3">
         <a href="reset.html" class="small-link">Forgotten password?</a>
       </div>
-      <hr>
+      <hr />
       <div class="text-center">
         <a href="signup.html" class="btn btn-success">Create new account</a>
       </div>
@@ -81,34 +74,39 @@
   </div>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    // Auto redirect if already logged in
+    if (localStorage.getItem("loggedInUser")) {
+      window.location.href = "index.html";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const emailOrPhone = document.getElementById('emailOrPhone').value.trim();
-      const pwd = document.getElementById('password').value.trim();
+      const input = document.getElementById("emailOrPhone").value.trim();
+      const pwd = document.getElementById("password").value.trim();
 
-      // Load users from localStorage
-      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const users = JSON.parse(localStorage.getItem("users")) || [];
 
-      // Check both email and phone number
-      const user = users.find(u => u.email === emailOrPhone || u.phone === emailOrPhone);
+      // match both email or phone
+      const user = users.find((u) => u.email === input || u.phone === input);
 
       if (!user) {
-        alert('❌ No account found. Please create an account first.');
+        alert("❌ No account found. Please create an account first.");
         return;
       }
 
       if (user.pwd === pwd) {
-        alert('✅ Login successful!');
-        // Save session
-        localStorage.setItem('loggedInUser', user.email);
-        // Redirect to your main page
-        window.location.href = 'index.html'; // 👈 redirects to your main file
+        alert("✅ Login successful!");
+
+        // save login info
+        localStorage.setItem("loggedInUser", user.email);
+
+        // redirect (MUST use full path for GitHub Pages)
+        window.location.href = "https://renukaui-art.github.io/suriWork/index.html";
       } else {
-        alert('❌ Incorrect password. Try again or reset it.');
+        alert("❌ Incorrect password. Try again.");
       }
     });
   </script>
-
 </body>
 </html>
